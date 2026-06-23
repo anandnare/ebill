@@ -2,6 +2,17 @@
 // 1. PRODUCT DATABASE (Real Retail Goods with Global Barcodes)
 // ==========================================
 const productDatabase = {
+    // --- Newly Added Products ---
+    "8908013522712": { name: "Vithoba Premium Ayurvedic Tooth Powder", price: 60.00 },
+    "8901719101038": { name: "Parle-G Original Gluco Biscuits (55g)", price: 5.00 },
+    "8901063017627": { name: "Britannia 50-50 Maska Chaska (71g)", price: 10.00 },
+    "8901233021782": { name: "Cadbury 5 Star Chocolate Bar", price: 10.00 },
+    "8901725121747": { name: "Aashirvaad Shudh Chakki Atta (1kg)", price: 65.00 },
+    "8901030761623": { name: "Lux Velvet Touch Soap Bar (100g)", price: 42.00 },
+    "101": { name: "Organic Basmati Rice (1kg) [Demo]", price: 110.00 },
+    "102": { name: "Cold Pressed Sunflower Oil (1L) [Demo]", price: 175.00 },
+
+    // --- Pre-existing System Products ---
     "8901491101831": { name: "Lays Classic Salted Chips (50g)", price: 20.00 },
     "8901030753032": { name: "Dove Cream Beauty Bathing Bar (100g)", price: 68.00 },
     "8901058002310": { name: "Coca-Cola Original Soft Drink (500ml)", price: 40.00 },
@@ -116,6 +127,7 @@ function addItemToCart(barcode) {
     updateUI();
 }
 
+// Changes quantity from the UI panel
 function changeQuantity(barcode, delta) {
     const item = cart.find(item => item.barcode === barcode);
     if (item) {
