@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurai Billing System Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header no-print">
+        <div class="header-container">
+            <div class="brand">
+                <span class="logo-icon">🏬</span>
+                <h1>SmartBill Pro</h1>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Light/Dark Mode">
+                    <span id="theme-toggle-icon">☀️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-layout no-print">
+        
+        <section class="left-panel">
+            <div class="card">
+                <h2 class="card-title">📸 Barcode Scanner</h2>
+                <p class="card-subtitle">Grant camera permissions to scan real product barcodes instantly.</p>
+                
+                <div id="scanner-wrapper">
+                    <div id="reader"></div>
+                </div>
+                
+                <div class="btn-group">
+                    <button onclick="startScanner()" class="btn btn-primary">Start Camera</button>
+                    <button onclick="stopScanner()" class="btn btn-secondary">Stop Camera</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title-sm">Manual Barcode / Quick Test</h3>
+                <div class="input-inline">
+                    <input type="text" id="manual-barcode" placeholder="Scan or type real barcode..." autocomplete="off">
+                    <button onclick="simulateScan()" class="btn btn-success">Add Item</button>
+                </div>
+                <div class="barcode-cheat-sheet">
+                    <p><strong>Demo Barcodes (Real Products):</strong></p>
+                    <ul>
+                        <li><code>8901491101831</code> - Lays Classic Salted (50g)</li>
+                        <li><code>8901030753032</code> - Dove Cream Beauty Bar (100g)</li>
+                        <li><code>8901058002310</code> - Coca-Cola Original (500ml)</li>
+                        <li><code>8901262010010</code> - Parle-G Biscuits (80g)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-panel">
+            <div class="card cart-card">
+                <div class="cart-header">
+                    <h2 class="card-title">Current Billing Invoice</h2>
+                    <button onclick="clearCart()" class="text-link-danger">Clear All</button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="billing-table">
+                        <thead>
+                            <tr>
+                                <th>Product Details</th>
+                                <th>Unit Rate</th>
+                                <th class="text-center">Qty (Taken)</th>
+                                <th class="text-right">Total Price</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-table-body">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="empty-state" class="empty-state">
+                    <span class="empty-icon">🛒</span>
+                    <p>Invoice is currently empty.</p>
+                    <p class="sub text-muted">Scan an item or enter a test barcode to update rates.</p>
+                </div>
+
+                <div class="cart-footer">
+                    <div class="total-row">
+                        <span class="total-label">Grand Total Amount:</span>
+                        <span id="grand-total" class="total-value">₹0.00</span>
+                    </div>
+                    <button onclick="prepareAndPrint()" class="btn btn-checkout">
+                        🖨️ Generate & Print Receipt
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="receipt-print-zone" class="hidden-print-layout">
+        <div class="receipt-header">
+            <h1 id="print-shop-name">GAURAI TECH & SUPERMART</h1>
+            <p id="print-shop-address">123 Main Commercial Hub, Near High School Circle, Dharashiv, Maharashtra - 413501</p>
+            <p id="print-shop-contact">📞 +91 98765 43210 | ✉️ support@gauraiwebsolutions.com</p>
+        </div>
+
+        <div class="receipt-meta">
+            <p><strong>Date/Time:</strong> <span id="print-date"></span></p>
+            <p><strong>Invoice No:</strong> <span id="print-receipt-id"></span></p>
+        </div>
+
+        <table class="receipt-table">
+            <thead>
+                <tr>
+                    <th>Item Description</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-right">Rate</th>
+                    <th class="text-right">Amount</th>
+                </tr>
+            </thead>
+            <tbody id="print-table-body">
+                </tbody>
+        </table>
+
+        <div class="receipt-total-section">
+            <div class="receipt-total-row">
+                <span>NET PAYABLE AMOUNT:</span>
+                <span id="print-grand-total">₹0.00</span>
+            </div>
+        </div>
+
+        <div class="receipt-footer">
+            <p>Thank you for shopping with us!</p>
+            <p class="developer-stamp">System Designed & Managed by Anand Nare (Gaurai Websolutions)</p>
+        </div>
+    </div>
+
+    <footer class="app-footer no-print">
+        <p>This website is designed by <a href="#" class="designer-link">Anand Nare (Gaurai Websolutions)</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
